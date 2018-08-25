@@ -57,9 +57,18 @@ namespace AspNetCoreODataSample.Web.Controllers
         [EnableQuery]
         public IActionResult Get()
         {
+            // View the Widgets result by navigating to
+            // http://localhost:5913/efcore/movies
             if (Request.Path.Value.Contains("efcore"))
             {
-                return Ok(_context.Movies);
+                var widgets = new List<Widget>() {
+                    new Widget {
+                        Foo = "I am foo",
+                        Bar = "I am bar",
+                    }
+                };
+
+                return Ok(widgets);
             }
             else
             {

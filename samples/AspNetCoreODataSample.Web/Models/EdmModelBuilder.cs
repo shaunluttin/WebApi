@@ -14,8 +14,12 @@ namespace AspNetCoreODataSample.Web.Models
         {
             if (_edmModel == null)
             {
-                var builder = new ODataConventionModelBuilder();
+                var builder = new ODataConventionModelBuilder()
+                    .EnableLowerCamelCase();
+
                 builder.EntitySet<Movie>("Movies");
+                builder.EntitySet<Widget>("Widgets");
+
                 _edmModel = builder.GetEdmModel();
             }
 
